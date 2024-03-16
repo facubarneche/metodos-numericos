@@ -3,6 +3,7 @@ var biseccion = function (a, b, e) {
     var p;
     while (b - a >= e) {
         p = (a + b) / 2;
+        console.log(p);
         if (myFunc(p) === 0) {
             console.log('Se encontró la raiz exacta: ', p);
             return p;
@@ -14,6 +15,6 @@ var biseccion = function (a, b, e) {
             a = p;
         }
     }
-    console.log('Raiz aproximada: ', p);
+    console.log(p, ' (Raiz aproximada)');
 };
 biseccion(-100, 100, 0.01);

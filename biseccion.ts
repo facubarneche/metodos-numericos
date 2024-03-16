@@ -5,7 +5,7 @@ const biseccion = (a: number, b: number, e: number) => {
 
    while(b - a >= e){
       p = (a + b) / 2;
-
+      console.log(p)
       if(myFunc(p) === 0){
          console.log('Se encontró la raiz exacta: ', p)
          return p
@@ -15,7 +15,7 @@ const biseccion = (a: number, b: number, e: number) => {
          a = p;
       }
    }
-   console.log('Raiz aproximada: ', p)
+   console.log(p, ' (Raiz aproximada)')
 }
 
 biseccion(-100, 100, 0.01)
