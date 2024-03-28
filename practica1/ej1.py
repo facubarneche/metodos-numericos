@@ -11,7 +11,8 @@
 
 import math;
 
-e = 0.001
+# euler
+e = 2.7182818284
 
 # f1(x) = √x
 def f1(x): return x ** 1/2
@@ -64,7 +65,7 @@ def biseccion(a, b, e, myFunc):
 #         else: 
 #             return biseccionCosySen(a, p, epsilon, myFunc)
 
-# Realizable
+# No Realizable, es continua de [0 a inf +), tiene raiz en 0 pero arranca su imagen en 0, por ende, "a" no puede obtener un valor negativo
 # biseccion(-100, 100, e, f1)
 
 # Realizable
@@ -74,7 +75,7 @@ def biseccion(a, b, e, myFunc):
 # biseccion(-100, 100, e, f3)
 
 # Realizable pero con mas validaciones
-# biseccionCosySen(-10, 10, e, f4)
+# biseccion(-10, 10, e, f4)
 
 # No realizable (se puede encontrar la raiz pero no es una f(x) continua ya que x = 0 no tiene imagen)
 # biseccion(-99, 100, e, f5)
@@ -83,7 +84,7 @@ def biseccion(a, b, e, myFunc):
 # biseccion(-100, 100, e, f6)
 
 # Realizable
-biseccion(-100, 100, e, f7)
+# biseccion(-100, 100, e, f7)
 
 #******************************************************************************
 #******************************** Observaciones *******************************

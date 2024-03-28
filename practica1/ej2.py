@@ -18,5 +18,5 @@ biseccion(-100, 100, 0.001)
 #******************************************************************************
 #******************************** Observaciones *******************************
 #******************************************************************************
-# Con las n decimales en 0 del valor de epzilom se va a obtener los n decimas correctas en el output
+# Con los n decimales en 0 del valor de epzilom se va a obtener los n decimas correctos en el output
 # del metodo de biseccion
