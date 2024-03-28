@@ -6,7 +6,6 @@ import math;
 
 # Funciones
 
-# f1(x) = √x
 def f(x): return math.log(x)
 
 # Derivadas
@@ -14,13 +13,13 @@ def df(x): return 1 / (2 * math.sqrt(x))
 
 
 # Newton
-def newton(x0, x1):
+def myFunc(x0, x1):
     x2 = x1 - ( (f(x1) * (x1 - x0)) / (f(x1) - f(x0)))
     print(x2)
     x0 = x1
     x1 = x2
 
-newton(1, 10)
+myFunc(1, 10)
 
 #******************************************************************************
 #******************************** Observaciones *******************************
