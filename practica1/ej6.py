@@ -15,8 +15,6 @@ def f1(x, n = 4): return x ** n # where n >= 1
 
 def f4(x): return math.cos(x)
 
-
-
 # Bisección
 def biseccion(a, b, e, myFunc):
     p = (a + b) / 2
