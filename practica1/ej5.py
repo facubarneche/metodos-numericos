@@ -39,10 +39,9 @@ def df6(x): return math.cos(x)
 
 # Newton
 def newton(x0, f, df):
-    for _ in range(0, 10):
-        x1 = x0 - (f(x0) / df(x0))
-        print(x1)
-        x0 = x1
+    x1 = x0 - (f(x0) / df(x0))
+    print(x1)
+    x0 = x1
 
 # newton(1, f1, df1)
 

@@ -20,10 +20,9 @@ def dfd(x): return 2
 
 # Newton
 def newton(x0, f, df):
-    for _ in range(0, 3):
-        x1 = x0 - (f(x0) / df(x0))
-        print(x1)
-        x0 = x1
+    x1 = x0 - (f(x0) / df(x0))
+    print(x1)
+    x0 = x1
 
 
 newton(-10, fd, dfd)
