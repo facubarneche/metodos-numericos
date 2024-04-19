@@ -2,12 +2,12 @@
 # pero que en vez de dividir el intervalo en 2 subintervalos lo divida en 3, 
 # y en cada iteración elija uno de los 3 subintervalos que contenga una raíz. 
 # Usar una condición de parada análoga a la del método de bisección.
-e = 0.00000001
+e = 0.01
 root = 0
 
 
 def anyFunc(x):
-    return x ** 2 - 4 
+    return x - 4 
 
 def triseccion(a, b, e) -> float:
     count = 0
