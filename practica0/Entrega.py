@@ -3,13 +3,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Metodo de Trisección
-def trisection(f, a, b):
+def trisection(f: Callable[[float], float], a: float, b: float) -> float:
     count = 0
 
     if f(a) * f(b) > 0:
         raise ValueError("Para encontrar la raiz, tanto la f(a) como la f(b) deben tener como resultado signos opuestos")
 
-    while (abs(b - a)) / 2.0 > e:
+    while (abs(b - a)) > e:
         count = count + 1
         c = a + (b - a) / 3.0
         d = a + 2 * (b - a) / 3.0
@@ -85,6 +85,7 @@ plot_function(f, a, b, func_str)
 #******************************************************************************
 #******************************** Observaciones *******************************
 #******************************************************************************
+
 # Se implementa el metodo de triseccion y el de biseccion para comparar la eficiacia de ambos metodos entre si
 # Se puede notar que generalmente el metodo de trisección necesita aproximadamente un 1.62 menos de iteraciones 
 # que la biseccion (con recursividad) para encontrar la raiz de la función. Esto no implica que sea mas eficaz
