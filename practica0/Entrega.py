@@ -45,7 +45,6 @@ def trisection(f, a: float, b: float, count = 0) -> float:
 #******************************************************************************
 #********************************** Bisección *********************************
 #******************************************************************************
-
 def bisection(f, a, b, count):
     """
     Esta función implementa el método de bisección para encontrar una raíz de la función f en el intervalo [a, b].
@@ -145,3 +144,37 @@ plot_pie_chart(trisectionCounter, bisectionCounter)
 # Se implementa el metodo de triseccion y el de biseccion para comparar la eficiacia de ambos metodos entre si
 # Se puede notar que generalmente el metodo de trisección necesita aproximadamente un 1.62 menos de iteraciones 
 # que la biseccion para encontrar la raiz de la función. Esto no implica que sea mas performante ya que cada iteración es mas costosa
+
+print("##################################### PRUEBAS ####################################\n")
+
+# Definimos algunas funciones para probar
+def f1(x):
+    return x**2 - 4
+
+def f2(x):
+    return np.sin(x)
+
+def f3(x):
+    return x - 1
+
+
+functions = [f1,f2,f3]
+# Definimos los intervalos para cada función
+intervalos = [(1, 3), (-1, 1), (-3, 3)]
+# Definimos la tolerancia
+e = 0.00000000001
+
+# Probamos el método de trisección y de bisección
+for i, f in enumerate(functions):
+    a, b = intervalos[i]
+    (testTriRoot, testTriCounter) = trisection(f, a, b)
+    (testBiRoot, testBiCounter) = bisection(f, a, b, 0)
+
+    print('Metodo de Trisección\n')
+    print(f"La raíz encontrada por el método de trisección para la función {i+1} es: {testTriRoot}")
+    print(f"El método de trisección para la función {i+1} tuvo {testTriCounter} iteraciones.\n")
+
+    print('Metodo de Bisección\n')
+    print(f"La raíz encontrada por el método de bisección para la función {i+1} es: {testBiRoot}")
+    print(f"El método de bisección para la función {i+1} tuvo {testBiCounter} iteraciones.\n")
+    print('##########################\n')
