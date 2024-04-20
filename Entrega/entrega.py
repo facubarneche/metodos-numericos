@@ -114,6 +114,7 @@ def plot_pie_chart(triCounter: int, biCounter: int):
     #Implementa un grafico de torta con las configuraciones seteadas
     plt.pie(sizes, labels=labels, explode=explode, autopct="%1.1f%%", shadow=True, startangle=90, colors=['pink', 'yellow'])
     plt.title('Numero de Iteraciones')
+    plt.text(1, 6, 'Este grafico muestra la cantidad de iteraciones en porcentaje que tomo cada metodo para encontrar la raiz de la funcion')
     plt.legend()
     plt.show() #Muestra el grafico anteriormente seteado
     
@@ -121,30 +122,30 @@ def plot_pie_chart(triCounter: int, biCounter: int):
 #***************************** Recolección de Datos ***************************
 #******************************************************************************
 
-# func_str = input("Ingresa la función f en términos de x: ")
-# f = lambda x: eval(func_str)
+func_str = input("Ingresa la función f en términos de x: ")
+f = lambda x: eval(func_str)
 
-# a = float(input("Ingresa el valor de a: "))
-# b = float(input("Ingresa el valor de b: "))
-# e = float(input("Ingresa la tolerancia: "))
+a = float(input("Ingresa el valor de a: "))
+b = float(input("Ingresa el valor de b: "))
+e = float(input("Ingresa la tolerancia: "))
 
 
 #******************************************************************************
 #***************************** Llamada a funciones ****************************
 #******************************************************************************
 
-# (triRoot, trisectionCounter) = trisection(f, a , b)
-# (biRoot, bisectionCounter) = bisection(f, a , b, 0)
-# print("Una posible raíz para el metodo de trisección es: ", triRoot)
-# print('El metodo de trisección tuvo ', trisectionCounter, ' iteraciones.')
+(triRoot, trisectionCounter) = trisection(f, a , b)
+(biRoot, bisectionCounter) = bisection(f, a , b, 0)
+print("Una posible raíz para el metodo de trisección es: ", triRoot)
+print('El metodo de trisección tuvo ', trisectionCounter, ' iteraciones.')
 
-# print("Una posible raíz para el metodo de bisección es: ", biRoot)
-# print('El metodo de bisección tuvo ', bisectionCounter, ' iteraciones.')
+print("Una posible raíz para el metodo de bisección es: ", biRoot)
+print('El metodo de bisección tuvo ', bisectionCounter, ' iteraciones.')
 
-# print('Cierre los graficos para finalizar el programa.')
+print('Cierre los graficos para finalizar el programa.')
 
-# plot_function(f, a, b, func_str)
-# plot_pie_chart(trisectionCounter, bisectionCounter)
+plot_function(f, a, b, func_str)
+plot_pie_chart(trisectionCounter, bisectionCounter)
 
 #******************************************************************************
 #******************************** Observaciones *******************************
@@ -153,45 +154,3 @@ def plot_pie_chart(triCounter: int, biCounter: int):
 # Se implementa el metodo de triseccion y el de biseccion para comparar la eficiacia de ambos metodos entre si
 # Se puede notar que generalmente el metodo de trisección necesita aproximadamente un 1.62 menos de iteraciones 
 # que la biseccion para encontrar la raiz de la función. Esto no implica que sea mas performante ya que cada iteración es mas costosa
-
-print("##################################### PRUEBAS ####################################\n")
-
-# Definimos algunas funciones para probar
-def f1(x):
-    return x**2 - 4
-
-def f2(x):
-    return np.sin(x)
-
-def f3(x):
-    return x - 1
-
-def f4(x):
-    return x ** 2 - 3 * x + 2
-
-def f5(x):
-    return x + 1
-
-
-
-functions = [f1,f2,f3,f4,f5]
-# Definimos los intervalos para cada función
-intervalos = [(1, 3), (-1, 1), (-3, 3), (1.5, 3), (-2,1)]
-# Definimos la tolerancia
-e = 0.00000000001
-
-# Probamos el método de trisección y de bisección
-for i, f in enumerate(functions):
-    a, b = intervalos[i]
-
-    (testTriRoot, testTriCounter) = trisection(f, a, b)
-    (testBiRoot, testBiCounter) = bisection(f, a, b, 0)
-
-    print('Metodo de Trisección\n')
-    print(f"La raíz encontrada por el método de trisección para la función {i+1} es: {testTriRoot}")
-    print(f"El método de trisección para la función {i+1} tuvo {testTriCounter} iteraciones.\n")
-
-    print('Metodo de Bisección\n')
-    print(f"La raíz encontrada por el método de bisección para la función {i+1} es: {testBiRoot}")
-    print(f"El método de bisección para la función {i+1} tuvo {testBiCounter} iteraciones.\n")
-    print('##########################\n')
