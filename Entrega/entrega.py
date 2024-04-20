@@ -160,3 +160,6 @@ if __name__ == "__main__":
 # 3. Se puede notar que generalmente el metodo de trisección necesita como minimo un 30% menos de iteraciones 
 # que la biseccion para encontrar la raiz de la función. 
 # 4. Que el metodo de trisección tenga menos iteraciones no implica que sea mas performante ya que cada iteración es mas costosa
+# 5. En los test se puede apreciar que cuando hay raices dentro del intervalo limite a la misma distancia de [a,b], el metodo
+# de bisección generalmente aproxima hacia la más grande. Por otro lado el metodo de trisección tiene un comportamiento bastante variado.
+# Estas conclusiones son en base a unas pocas pruebas, por eso son observaciones volcadas respecto a estos tests.
