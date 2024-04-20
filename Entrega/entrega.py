@@ -125,6 +125,12 @@ def plot_bar_chart(triCounter: int, biCounter: int):
 
 # Se agrega condicion para que no se ejecuten las siguientes lineas al ejecutar los test (test.py)
 if __name__ == "__main__":
+    print(f'''
+############################################################################
+######### TP Metodos Númericos (Andres Hernandez, Facundo Barneche) ########
+############################################################################
+    ''')
+
     func_str = input("Ingresa la función f en términos de x: ")
     f = lambda x: eval(func_str)
 
