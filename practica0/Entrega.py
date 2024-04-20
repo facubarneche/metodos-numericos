@@ -2,40 +2,36 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Se crean 2 variables globales para luego podes accederlas en el grafico de torta
-globalCountTrisec = 0
-globalCountBisec = 0
-
 #******************************************************************************
 #********************************** Trisección ********************************
 #******************************************************************************
 
-def trisection(f, a: float, b: float) -> float:
+def trisection(f, a: float, b: float, count = 0) -> float:
     """
     Esta función implementa el método de trisección para encontrar una raíz de la función f en el intervalo [a, b].
     
     Parámetros:
     f -- La función para la cual se busca la raíz.
     (a, b) -- Limites de signo opuesto del intervalo.
+    count -- Contador de iteraciones, seteada por defecto en 0
     
     Devuelve:
-    Una float que contiene la raíz encontrada
+    Una tupla que contiene un float con la aproximación de la raíz y un int con el numero de iteraciones
     """
-    
-    global globalCountTrisec
 
-    if f(a) * f(b) > 0:
+    if f(a) * f(b) >= 0:
         raise ValueError("Para encontrar la raiz, tanto la f(a) como la f(b) deben tener como resultado signos opuestos")
 
     while (abs(b - a)) > e:
-        globalCountTrisec = globalCountTrisec + 1
+        count = count + 1
+
         c = a + (b - a) / 3.0
         d = a + 2 * (b - a) / 3.0
 
         if f(c) == 0:
-            return c
+            return c, count
         elif f(d) == 0:
-            return d
+            return d, count
         elif f(c) * f(d) < 0:
             a = c
             b = d
@@ -44,42 +40,39 @@ def trisection(f, a: float, b: float) -> float:
         else:
             a = d
 
-    print('El metodo de trisección tuvo ', globalCountTrisec, ' iteraciones.')
-    return (a + b) / 2.0
+    return (a + b) / 2.0, count
 
 #******************************************************************************
 #********************************** Bisección *********************************
 #******************************************************************************
 
-def bisection(f, a, b) -> float:
+def bisection(f, a, b, count):
     """
     Esta función implementa el método de bisección para encontrar una raíz de la función f en el intervalo [a, b].
     
     Parámetros:
     f -- La función para la cual se busca la raíz.
     (a, b) -- Limites de signo opuesto del intervalo.
+    count -- Contador de iteraciones, sin seteo por defecto ya que al ser una función recursiva devolvería siempre 0
     
     Devuelve:
-    Una float que contiene la raíz encontrada
+    Una tupla que contiene un float con la aproximación de la raíz y un int con el numero de iteraciones
     """
         
-    global globalCountBisec
-
     if f(a) * f(b) > 0:
         raise ValueError("Para encontrar la raiz, tanto la f(a) como la f(b) deben tener como resultado signos opuestos")
 
     p = (a + b) / 2.0
 
     if (abs(b - a)) < e:
-        print('El metodo de bisección tuvo ', globalCountBisec, ' iteraciones.')
-        return p
+        return p, count
     
-    globalCountBisec = globalCountBisec + 1
+    count = count + 1
 
     if f(b) * f(p) > 0: 
-        return bisection(f, a, p)
+        return bisection(f, a, p, count)
     else:
-        return bisection(f, p, b)
+        return bisection(f, p, b, count)
 
 #******************************************************************************
 #****************************** Grafico de Lineas *****************************
@@ -102,15 +95,14 @@ def plot_function(f, a, b, func_str):
     plt.legend()
     plt.show()
 
+
 #******************************************************************************
 #****************************** Grafico de Torta ******************************
 #******************************************************************************
 
-def plot_pie_chart():
-    labelTrisec = 'Trisección (' + str(globalCountTrisec) + ')'
-    labelBisec = 'Bisección (' + str(globalCountBisec) + ')'
-    labels = [labelTrisec, labelBisec]
-    sizes = [globalCountTrisec, globalCountBisec]
+def plot_pie_chart(triCounter, biCounter):
+    labels = ['Trisección (' + str(triCounter) + ')', 'Bisección (' + str(biCounter) + ')']
+    sizes = [triCounter, biCounter]
     explode = [0.05, 0.05]
 
     #Implementa un grafico de torta con las configuraciones seteadas
@@ -118,7 +110,6 @@ def plot_pie_chart():
     plt.title('Numero de Iteraciones')
     plt.legend()
     plt.show() #Muestra el grafico anteriormente seteado
-
 #******************************************************************************
 #***************************** Recolección de Datos ***************************
 #******************************************************************************
@@ -134,13 +125,18 @@ e = float(input("Ingresa la tolerancia: "))
 #******************************************************************************
 #***************************** Llamada a funciones ****************************
 #******************************************************************************
+(triRoot, trisectionCounter) = trisection(f, a , b)
+(biRoot, bisectionCounter) = bisection(f, a , b, 0)
+print("Una posible raíz para el metodo de trisección es: ", triRoot)
+print('El metodo de trisección tuvo ', trisectionCounter, ' iteraciones.')
 
-print("Una posible raíz para el metodo de trisección es: ", trisection(f, a, b))
-print("Una posible raíz para el metodo de bisección es: ", bisection(f, a , b))
+print("Una posible raíz para el metodo de bisección es: ", biRoot)
+print('El metodo de bisección tuvo ', bisectionCounter, ' iteraciones.')
+
 print('Cierre los graficos para finalizar el programa.')
 
 plot_function(f, a, b, func_str)
-plot_pie_chart()
+plot_pie_chart(trisectionCounter, bisectionCounter)
 
 #******************************************************************************
 #******************************** Observaciones *******************************
