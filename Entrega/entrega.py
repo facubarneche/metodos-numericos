@@ -114,7 +114,7 @@ def plot_pie_chart(triCounter: int, biCounter: int):
     #Implementa un grafico de torta con las configuraciones seteadas
     plt.pie(sizes, labels=labels, explode=explode, autopct="%1.1f%%", shadow=True, startangle=90, colors=['pink', 'yellow'])
     plt.title('Numero de Iteraciones')
-    plt.text(1, 6, 'Este grafico muestra la cantidad de iteraciones en porcentaje que tomo cada metodo para encontrar la raiz de la funcion')
+    plt.text(-2.2, -1.5, 'Este grafico muestra la cantidad de iteraciones en porcentaje que tomo cada metodo para encontrar la raiz de la funcion')
     plt.legend()
     plt.show() #Muestra el grafico anteriormente seteado
     
