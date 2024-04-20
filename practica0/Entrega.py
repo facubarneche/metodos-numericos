@@ -6,27 +6,30 @@ import matplotlib.pyplot as plt
 #********************************** Trisección ********************************
 #******************************************************************************
 
-def trisection(f, a: float, b: float, count = 0) -> float:
+def trisection(f, a: float, b: float, count: int = 0) -> float:
     """
     Esta función implementa el método de trisección para encontrar una raíz de la función f en el intervalo [a, b].
+
+    * Contraints:
+    f(a), f(b) -- Deben ser obligatoriamente de signo opuesto y distinto a 0 (raiz)
     
-    Parámetros:
+    * Parámetros:
     f -- La función para la cual se busca la raíz.
-    (a, b) -- Limites de signo opuesto del intervalo.
+    [a, b] -- Limites de rango donde buscar la raiz.
     count -- Contador de iteraciones, seteada por defecto en 0
     
-    Devuelve:
+    * Devuelve:
     Una tupla que contiene un float con la aproximación de la raíz y un int con el numero de iteraciones
     """
 
     if f(a) * f(b) >= 0:
         raise ValueError("Para encontrar la raiz, tanto la f(a) como la f(b) deben tener como resultado signos opuestos")
 
-    while (abs(b - a)) > e:
-        count = count + 1
+    while (abs(b - a)) > e: # Mientras la diferencia absoluta entre 'b' y 'a' sea mayor que 'e'
+        count = count + 1 # Incrementa el contador
 
-        c = a + (b - a) / 3.0
-        d = a + 2 * (b - a) / 3.0
+        c = a + (b - a) / 3.0 # Calcula el primer tercio del intervalo
+        d = a + 2 * (b - a) / 3.0 # Calcula el segundo tercio del intervalo
 
         if f(c) == 0:
             return c, count
@@ -42,33 +45,37 @@ def trisection(f, a: float, b: float, count = 0) -> float:
 
     return (a + b) / 2.0, count
 
+
 #******************************************************************************
 #********************************** Bisección *********************************
 #******************************************************************************
-def bisection(f, a, b, count):
+def bisection(f, a: float, b: float, count: int) -> float:
     """
     Esta función implementa el método de bisección para encontrar una raíz de la función f en el intervalo [a, b].
     
-    Parámetros:
+    * Contraints:
+    f(a), f(b) -- Deben ser obligatoriamente de signo opuesto y distinto a 0 (raiz)
+    
+    * Parámetros:
     f -- La función para la cual se busca la raíz.
-    (a, b) -- Limites de signo opuesto del intervalo.
+    [a, b] -- Limites de rango donde buscar la raiz.
     count -- Contador de iteraciones, sin seteo por defecto ya que al ser una función recursiva devolvería siempre 0
     
-    Devuelve:
+    * Devuelve:
     Una tupla que contiene un float con la aproximación de la raíz y un int con el numero de iteraciones
     """
-        
-    if f(a) * f(b) > 0:
+    # A diferencia de trisección esta linea la ejecuta constantemente a causa de la recursividad
+    if f(a) * f(b) >= 0 and count == 0:
         raise ValueError("Para encontrar la raiz, tanto la f(a) como la f(b) deben tener como resultado signos opuestos")
 
     p = (a + b) / 2.0
 
-    if (abs(b - a)) < e:
+    if (abs(b - a)) < e: # Si la diferencia absoluta entre 'b' y 'a' es menor que 'e' retorna la dupla con la raiz aproximada y el contador
         return p, count
     
-    count = count + 1
+    count = count + 1 # Incrementa el contador
 
-    if f(b) * f(p) > 0: 
+    if f(b) * f(p) > 0: # Se nutre recursivamente disminuyendo el rango de busqueda
         return bisection(f, a, p, count)
     else:
         return bisection(f, p, b, count)
@@ -77,7 +84,7 @@ def bisection(f, a, b, count):
 #****************************** Grafico de Lineas *****************************
 #******************************************************************************
 
-def plot_function(f, a, b, func_str):
+def plot_function(f, a: float, b: float, func_str: str):
     # Crea un array de valores x entre a y b
     x = np.linspace(a, b, 400)
     y = f(x)
@@ -99,7 +106,7 @@ def plot_function(f, a, b, func_str):
 #****************************** Grafico de Torta ******************************
 #******************************************************************************
 
-def plot_pie_chart(triCounter, biCounter):
+def plot_pie_chart(triCounter: int, biCounter: int):
     labels = ['Trisección (' + str(triCounter) + ')', 'Bisección (' + str(biCounter) + ')']
     sizes = [triCounter, biCounter]
     explode = [0.05, 0.05]
@@ -109,33 +116,35 @@ def plot_pie_chart(triCounter, biCounter):
     plt.title('Numero de Iteraciones')
     plt.legend()
     plt.show() #Muestra el grafico anteriormente seteado
+    
 #******************************************************************************
 #***************************** Recolección de Datos ***************************
 #******************************************************************************
 
-func_str = input("Ingresa la función f en términos de x: ")
-f = lambda x: eval(func_str)
+# func_str = input("Ingresa la función f en términos de x: ")
+# f = lambda x: eval(func_str)
 
-a = float(input("Ingresa el valor de a: "))
-b = float(input("Ingresa el valor de b: "))
-e = float(input("Ingresa la tolerancia: "))
+# a = float(input("Ingresa el valor de a: "))
+# b = float(input("Ingresa el valor de b: "))
+# e = float(input("Ingresa la tolerancia: "))
 
 
 #******************************************************************************
 #***************************** Llamada a funciones ****************************
 #******************************************************************************
-(triRoot, trisectionCounter) = trisection(f, a , b)
-(biRoot, bisectionCounter) = bisection(f, a , b, 0)
-print("Una posible raíz para el metodo de trisección es: ", triRoot)
-print('El metodo de trisección tuvo ', trisectionCounter, ' iteraciones.')
 
-print("Una posible raíz para el metodo de bisección es: ", biRoot)
-print('El metodo de bisección tuvo ', bisectionCounter, ' iteraciones.')
+# (triRoot, trisectionCounter) = trisection(f, a , b)
+# (biRoot, bisectionCounter) = bisection(f, a , b, 0)
+# print("Una posible raíz para el metodo de trisección es: ", triRoot)
+# print('El metodo de trisección tuvo ', trisectionCounter, ' iteraciones.')
 
-print('Cierre los graficos para finalizar el programa.')
+# print("Una posible raíz para el metodo de bisección es: ", biRoot)
+# print('El metodo de bisección tuvo ', bisectionCounter, ' iteraciones.')
 
-plot_function(f, a, b, func_str)
-plot_pie_chart(trisectionCounter, bisectionCounter)
+# print('Cierre los graficos para finalizar el programa.')
+
+# plot_function(f, a, b, func_str)
+# plot_pie_chart(trisectionCounter, bisectionCounter)
 
 #******************************************************************************
 #******************************** Observaciones *******************************
@@ -157,16 +166,24 @@ def f2(x):
 def f3(x):
     return x - 1
 
+def f4(x):
+    return x ** 2 - 3 * x + 2
 
-functions = [f1,f2,f3]
+def f5(x):
+    return x + 1
+
+
+
+functions = [f1,f2,f3,f4,f5]
 # Definimos los intervalos para cada función
-intervalos = [(1, 3), (-1, 1), (-3, 3)]
+intervalos = [(1, 3), (-1, 1), (-3, 3), (1.5, 3), (-2,1)]
 # Definimos la tolerancia
 e = 0.00000000001
 
 # Probamos el método de trisección y de bisección
 for i, f in enumerate(functions):
     a, b = intervalos[i]
+
     (testTriRoot, testTriCounter) = trisection(f, a, b)
     (testBiRoot, testBiCounter) = bisection(f, a, b, 0)
 
