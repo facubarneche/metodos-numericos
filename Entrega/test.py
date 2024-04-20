@@ -74,6 +74,8 @@ e = 0.00000000001
 totalIterationsTri = 0
 totalIterationsBi = 0
 
+print('########################## Tests ########################## \n')
+
 # Probamos el método de trisección y de bisección
 for i, func in enumerate(functions):
     a, b = intervals[i]
@@ -87,14 +89,20 @@ for i, func in enumerate(functions):
     func_expr = func_source[func_source.index(':')+1:].strip()
     func_expr = func_expr.replace('return ', '')
 
-    print('Metodo de Trisección\n')
-    print(f"La raíz encontrada por el método de trisección para la función f{i+1}(x) = {func_expr} es: {testTriRoot}")
-    print(f"El método de trisección para la función f{i+1}(x) tuvo {testTriCounter} iteraciones.\n")
+    print(f'''
+###############################################################
+########## Función f{i+1}(x) = {func_expr} ##########
+###############################################################
+    ''')
 
-    print('Metodo de Bisección\n')
-    print(f"La raíz encontrada por el método de bisección para la función f{i+1}(x) = {func_expr} es: {testBiRoot}")
-    print(f"El método de bisección para la función f{i+1}(x) tuvo {testBiCounter} iteraciones.\n")
-    print('##########################\n')
+
+    print('Metodo de Trisección:\n')
+    print(f"Raíz aproximada: {testTriRoot}")
+    print(f"Iteraciones: {testTriCounter}\n")
+
+    print('Metodo de Bisección:\n')
+    print(f"Raíz aproximada: {testBiRoot}")
+    print(f"Iteraciones: {testBiCounter}\n")
 
 # Llamada a gráfico de barras
 plot_bar_chart(totalIterationsTri, totalIterationsBi)
