@@ -1,4 +1,4 @@
-from entrega import trisection, bisection
+from entrega import plot_pie_chart, trisection, bisection
 import numpy as np
 import inspect
 
@@ -70,13 +70,9 @@ intervals = [
     (1.5, 2.5)      # Para f15
 ]
 
-e = 0.01
+e = 0.00001
 
 # Probamos el método de trisección y de bisección
-
-
-# ...
-
 for i, func in enumerate(functions):
     a, b = intervals[i]
     (testTriRoot, testTriCounter) = trisection(func, a, b)
@@ -94,3 +90,6 @@ for i, func in enumerate(functions):
     print(f"La raíz encontrada por el método de bisección para la función f{i+1}(x) = {func_expr} es: {testBiRoot}")
     print(f"El método de bisección para la función f{i+1}(x) tuvo {testBiCounter} iteraciones.\n")
     print('##########################\n')
+
+# Gráfico de torta
+# plot_pie_chart(1, 2)

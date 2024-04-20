@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 #********************************** Trisección ********************************
 #******************************************************************************
 
-def trisection(f, a: float, b: float, count: int = 0) -> float:
+def trisection(f, a: float, b: float, count: int = 0, e: float = 0.0001) -> float:
     """
     Esta función implementa el método de trisección para encontrar una raíz de la función f en el intervalo [a, b].
 
@@ -49,7 +49,7 @@ def trisection(f, a: float, b: float, count: int = 0) -> float:
 #******************************************************************************
 #********************************** Bisección *********************************
 #******************************************************************************
-def bisection(f, a: float, b: float, count: int) -> float:
+def bisection(f, a: float, b: float, count: int, e: float = 0.0001) -> float:
     """
     Esta función implementa el método de bisección para encontrar una raíz de la función f en el intervalo [a, b].
     
@@ -121,31 +121,31 @@ def plot_pie_chart(triCounter: int, biCounter: int):
 #******************************************************************************
 #***************************** Recolección de Datos ***************************
 #******************************************************************************
+if __name__ == "__main__":
+    func_str = input("Ingresa la función f en términos de x: ")
+    f = lambda x: eval(func_str)
 
-func_str = input("Ingresa la función f en términos de x: ")
-f = lambda x: eval(func_str)
-
-a = float(input("Ingresa el valor de a: "))
-b = float(input("Ingresa el valor de b: "))
-e = float(input("Ingresa la tolerancia: "))
+    a = float(input("Ingresa el valor de a: "))
+    b = float(input("Ingresa el valor de b: "))
+    e = float(input("Ingresa la tolerancia: "))
 
 
 #******************************************************************************
 #***************************** Llamada a funciones ****************************
 #******************************************************************************
 
-(triRoot, trisectionCounter) = trisection(f, a , b)
-(biRoot, bisectionCounter) = bisection(f, a , b, 0)
-print("Una posible raíz para el metodo de trisección es: ", triRoot)
-print('El metodo de trisección tuvo ', trisectionCounter, ' iteraciones.')
+    (triRoot, trisectionCounter) = trisection(f, a , b)
+    (biRoot, bisectionCounter) = bisection(f, a , b, 0)
+    print("Una posible raíz para el metodo de trisección es: ", triRoot)
+    print('El metodo de trisección tuvo ', trisectionCounter, ' iteraciones.')
 
-print("Una posible raíz para el metodo de bisección es: ", biRoot)
-print('El metodo de bisección tuvo ', bisectionCounter, ' iteraciones.')
+    print("Una posible raíz para el metodo de bisección es: ", biRoot)
+    print('El metodo de bisección tuvo ', bisectionCounter, ' iteraciones.')
 
-print('Cierre los graficos para finalizar el programa.')
+    print('Cierre los graficos para finalizar el programa.')
 
-plot_function(f, a, b, func_str)
-plot_pie_chart(trisectionCounter, bisectionCounter)
+    plot_function(f, a, b, func_str)
+    plot_pie_chart(trisectionCounter, bisectionCounter)
 
 #******************************************************************************
 #******************************** Observaciones *******************************
