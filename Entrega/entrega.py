@@ -154,6 +154,9 @@ if __name__ == "__main__":
 #******************************** Observaciones *******************************
 #******************************************************************************
 
-# Se implementa el metodo de triseccion y el de biseccion para comparar la eficiacia de ambos metodos entre si
-# Se puede notar que generalmente el metodo de trisección necesita aproximadamente un 1.62 menos de iteraciones 
-# que la biseccion para encontrar la raiz de la función. Esto no implica que sea mas performante ya que cada iteración es mas costosa
+# 1. Se implementa el metodo de triseccion y el de biseccion para comparar la eficiacia de ambos metodos entre si
+# 2. Las raíces aproximadas son bastante cercanas entre los dos métodos en la mayoría de los casos, lo que sugiere 
+# que ambos métodos son efectivos para encontrar las raíces.
+# 3. Se puede notar que generalmente el metodo de trisección necesita como minimo un 30% menos de iteraciones 
+# que la biseccion para encontrar la raiz de la función. 
+# 4. Que el metodo de trisección tenga menos iteraciones no implica que sea mas performante ya que cada iteración es mas costosa

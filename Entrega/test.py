@@ -70,28 +70,34 @@ intervals = [
     (1.5, 2.5)      # Para f15
 ]
 # Error permitido
-e = 0.00000000001
+e = 0.0001
 totalIterationsTri = 0
 totalIterationsBi = 0
 
-print('########################## Tests ########################## \n')
+print(f'''
+###############################################################
+############################ TESTS ############################
+###############################################################
+''')
 
 # Probamos el método de trisección y de bisección
 for i, func in enumerate(functions):
-    a, b = intervals[i]
+    (a, b) = intervals[i] #Obtenemos los 2 valores de la tupla intervals[i]
     (testTriRoot, testTriCounter) = trisection(func, a, b, e)
     (testBiRoot, testBiCounter) = bisection(func, a, b, e, 0)
 
+    # Calculamos las iteraciones totales de cada metodo
     totalIterationsTri = totalIterationsTri + testTriCounter
     totalIterationsBi = totalIterationsBi + testBiCounter
     
+    # Obtenemos en string la funcion para luego mostrarla por consola
     func_source = inspect.getsource(func).strip()
     func_expr = func_source[func_source.index(':')+1:].strip()
     func_expr = func_expr.replace('return ', '')
 
     print(f'''
 ###############################################################
-########## Función f{i+1}(x) = {func_expr} ##########
+            Función f{i+1}(x) = {func_expr}
 ###############################################################
     ''')
 
