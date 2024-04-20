@@ -69,14 +69,14 @@ intervals = [
     (1, 2),         # Para f14
     (1.5, 2.5)      # Para f15
 ]
-
-e = 0.00001
+# Error permitido
+e = 0.00000000001
 
 # Probamos el método de trisección y de bisección
 for i, func in enumerate(functions):
     a, b = intervals[i]
-    (testTriRoot, testTriCounter) = trisection(func, a, b)
-    (testBiRoot, testBiCounter) = bisection(func, a, b, 0)
+    (testTriRoot, testTriCounter) = trisection(func, a, b, e)
+    (testBiRoot, testBiCounter) = bisection(func, a, b, e, 0)
     
     func_source = inspect.getsource(func).strip()
     func_expr = func_source[func_source.index(':')+1:].strip()

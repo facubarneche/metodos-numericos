@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 #********************************** Trisección ********************************
 #******************************************************************************
 
-def trisection(f, a: float, b: float, count: int = 0, e: float = 0.0001) -> float:
+def trisection(f, a: float, b: float, e: float, count: int = 0) -> float:
     """
     Esta función implementa el método de trisección para encontrar una raíz de la función f en el intervalo [a, b].
 
@@ -49,7 +49,7 @@ def trisection(f, a: float, b: float, count: int = 0, e: float = 0.0001) -> floa
 #******************************************************************************
 #********************************** Bisección *********************************
 #******************************************************************************
-def bisection(f, a: float, b: float, count: int, e: float = 0.0001) -> float:
+def bisection(f, a: float, b: float, e: float, count: int) -> float:
     """
     Esta función implementa el método de bisección para encontrar una raíz de la función f en el intervalo [a, b].
     
@@ -76,9 +76,9 @@ def bisection(f, a: float, b: float, count: int, e: float = 0.0001) -> float:
     count = count + 1 # Incrementa el contador
 
     if f(b) * f(p) > 0: # Se nutre recursivamente disminuyendo el rango de busqueda
-        return bisection(f, a, p, count)
+        return bisection(f, a, p, e, count)
     else:
-        return bisection(f, p, b, count)
+        return bisection(f, p, b, e, count)
 
 #******************************************************************************
 #****************************** Grafico de Lineas *****************************
@@ -121,6 +121,8 @@ def plot_pie_chart(triCounter: int, biCounter: int):
 #******************************************************************************
 #***************************** Recolección de Datos ***************************
 #******************************************************************************
+
+# Se agrega condicion para que no se ejecuten las siguientes lineas al ejecutar los test (test.py)
 if __name__ == "__main__":
     func_str = input("Ingresa la función f en términos de x: ")
     f = lambda x: eval(func_str)
@@ -134,8 +136,8 @@ if __name__ == "__main__":
 #***************************** Llamada a funciones ****************************
 #******************************************************************************
 
-    (triRoot, trisectionCounter) = trisection(f, a , b)
-    (biRoot, bisectionCounter) = bisection(f, a , b, 0)
+    (triRoot, trisectionCounter) = trisection(f, a , b, e)
+    (biRoot, bisectionCounter) = bisection(f, a , b, e, 0)
     print("Una posible raíz para el metodo de trisección es: ", triRoot)
     print('El metodo de trisección tuvo ', trisectionCounter, ' iteraciones.')
 
