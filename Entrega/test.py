@@ -1,4 +1,4 @@
-from entrega import plot_pie_chart, trisection, bisection
+from entrega import plot_bar_chart, trisection, bisection
 import numpy as np
 import inspect
 
@@ -71,12 +71,17 @@ intervals = [
 ]
 # Error permitido
 e = 0.00000000001
+totalIterationsTri = 0
+totalIterationsBi = 0
 
 # Probamos el método de trisección y de bisección
 for i, func in enumerate(functions):
     a, b = intervals[i]
     (testTriRoot, testTriCounter) = trisection(func, a, b, e)
     (testBiRoot, testBiCounter) = bisection(func, a, b, e, 0)
+
+    totalIterationsTri = totalIterationsTri + testTriCounter
+    totalIterationsBi = totalIterationsBi + testBiCounter
     
     func_source = inspect.getsource(func).strip()
     func_expr = func_source[func_source.index(':')+1:].strip()
@@ -91,5 +96,5 @@ for i, func in enumerate(functions):
     print(f"El método de bisección para la función f{i+1}(x) tuvo {testBiCounter} iteraciones.\n")
     print('##########################\n')
 
-# Gráfico de torta
-# plot_pie_chart(1, 2)
+# Llamada a gráfico de barras
+plot_bar_chart(totalIterationsTri, totalIterationsBi)

@@ -103,21 +103,22 @@ def plot_function(f, a: float, b: float, func_str: str):
 
 
 #******************************************************************************
-#****************************** Grafico de Torta ******************************
+#****************************** Grafico de Barras ******************************
 #******************************************************************************
 
-def plot_pie_chart(triCounter: int, biCounter: int):
+def plot_bar_chart(triCounter: int, biCounter: int):
     labels = ['Trisección (' + str(triCounter) + ')', 'Bisección (' + str(biCounter) + ')']
-    sizes = [triCounter, biCounter]
-    explode = [0.05, 0.05]
+    iterations = [triCounter, biCounter]
 
-    #Implementa un grafico de torta con las configuraciones seteadas
-    plt.pie(sizes, labels=labels, explode=explode, autopct="%1.1f%%", shadow=True, startangle=90, colors=['pink', 'yellow'])
-    plt.title('Numero de Iteraciones')
-    plt.text(-2.2, -1.5, 'Este grafico muestra la cantidad de iteraciones en porcentaje que tomo cada metodo para encontrar la raiz de la funcion')
-    plt.legend()
-    plt.show() #Muestra el grafico anteriormente seteado
-    
+    x = range(len(labels))
+    bar_width = 0.5  # Anchura de las barras
+
+    plt.bar(x, iterations, width=bar_width, color=['pink', 'brown'])
+    plt.ylabel('Número de Iteraciones')
+    plt.title('Comparación de Iteraciones entre Trisección y Bisección')
+    plt.xticks(x, labels)  # Colocamos los nombres de los métodos en el eje x
+    plt.show()  # Muestra el gráfico de barras
+
 #******************************************************************************
 #***************************** Recolección de Datos ***************************
 #******************************************************************************
@@ -147,7 +148,7 @@ if __name__ == "__main__":
     print('Cierre los graficos para finalizar el programa.')
 
     plot_function(f, a, b, func_str)
-    plot_pie_chart(trisectionCounter, bisectionCounter)
+    plot_bar_chart(trisectionCounter, bisectionCounter)
 
 #******************************************************************************
 #******************************** Observaciones *******************************
