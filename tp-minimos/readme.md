@@ -50,4 +50,10 @@ To launch Jupyter Notebook, run the following command in your terminal:
 
 jupyter notebook
 
+# Posible errores
 
+<pre>
+ModuleNotFoundError Traceback (most recent call last) File ~\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\pandas\compat_optional.py:135, in import_optional_dependency(name, extra, errors, min_version) 134 try: --> 135 module = importlib.import_module(name) 136 except ImportError
+</pre>
+
+pip install openpyxl

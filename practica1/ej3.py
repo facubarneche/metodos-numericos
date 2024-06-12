@@ -12,10 +12,10 @@ e = 2.7182818284
 def f1(x): return math.sqrt(x)
 
 # f2(x) = x3+1
-def f2(x): return 3 * x + 1  
+def f2(x): return  x ** 3 + 1  
 
 # f3(x) = x3- x + 1
-def f3(x): return 3 * x - x + 1
+def f3(x): return x ** 3 - x + 1
 
 # f4(x) = e-x – sen x
 def f4(x): return e - x - math.sin(x)
